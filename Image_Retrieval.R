@@ -3,8 +3,8 @@ library(imager)
 
 path.image = "C:/Users/Kushin/Desktop/Modelling Project/256x256/photo/tx_000000000000/airplane"
 path.sket = "C:/Users/Kushin/Desktop/Modelling Project/256x256/sketch/tx_000000000000/airplane"
-folder.image= "256x256/photo/tx_000000000000/airplane/"
-folder.sketch="256x256/sketch/tx_000000000000/airplane/"
+folder.image= "C:/Users/Kushin/Desktop/Modelling Project/256x256/photo/tx_000000000000/airplane/"
+folder.sketch="C:/Users/Kushin/Desktop/Modelling Project/256x256/sketch/tx_000000000000/airplane/"
 
 image.files <- list.files(path = path.image, pattern = "*.jpg") 
 
@@ -16,7 +16,7 @@ sket.files.3<- list.files(path = path.sket, pattern = "*-3.png")
 sket.files.4<- list.files(path = path.sket, pattern = "*-4.png")
 sket.files.5<- list.files(path = path.sket, pattern = "*-5.png")
 
-single.image<-load.image("256x256/photo/tx_000000000000/airplane/n02691156_507.jpg")
+single.image<-load.image("C:/Users/Kushin/Desktop/Modelling Project/256x256/photo/tx_000000000000/airplane/n02691156_507.jpg")
 plot(single.image)
 single.sketch<-load.image("C:/Users/Kushin/Desktop/Modelling Project/256x256/sketch/tx_000000000000/airplane/n02691156_507-1.png")
 plot(single.sketch)
@@ -31,15 +31,15 @@ single.image
 
 
 
-image.string<- array(0, c(15,5,256,256,1,1))
-for(i in 1:15){
+image.string<- array(0, c(8,5,256,256,1,1))
+for(i in 1:8){
   image.string[i,,,,,]<- grayscale(load.image(paste(folder.image,image.files[i], sep="")))
   
 } 
 dim(image.string)<- c(dim(image.string)[1]*dim(image.string)[2],256,256,dim(image.string)[5]*dim(image.string)[6])
 
-sketch.string<- array(0,c(15,5,256,256,1))
-for(i in 1:15){
+sketch.string<- array(0,c(8,5,256,256,1))
+for(i in 1:8){
   sketch.string[i,1,,,]<-grayscale(load.image(paste(folder.sketch,sket.files.1[i],sep="")))
   sketch.string[i,2,,,]<-grayscale(load.image(paste(folder.sketch,sket.files.2[i],sep="")))
   sketch.string[i,3,,,]<-grayscale(load.image(paste(folder.sketch,sket.files.3[i],sep="")))
@@ -53,9 +53,6 @@ for(i in 1:15){
 #dim(image.string)<- c(dim(image.string)[1]*dim(image.string)[2],dim(image.string)[3]*dim(image.string)[4])
 dim(sketch.string)<- c(dim(sketch.string)[1]*dim(sketch.string)[2],dim(sketch.string)[3]*dim(sketch.string)[4]*dim(sketch.string)[5])
 
-
-plot(as.cimg(image.string[,,70]))
-plot(as.cimg(sketch.string[,,70]))
 
 
 
